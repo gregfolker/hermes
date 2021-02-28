@@ -21,4 +21,7 @@ func run() {
 
 	fmt.Printf("Who is the author of this project?\n")
 	fmt.Printf("%s\n\n", ui.GetProjectAuthor())
+
+	fmt.Printf("What language will this project be written in?\n")
+	fmt.Printf("%s\n\n", ui.GetProjectLanguage())
 }
