@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/gregfolker/auto-project-builder/internal/ui"
+	"github.com/gregfolker/auto-project-builder/pkg/project"
 )
 
 const (
@@ -12,16 +12,9 @@ const (
 func main() {
 	fmt.Printf("%s\n\n", appName)
 
-	run()
-}
+	prog := project.NewProject()
 
-func run() {
-	fmt.Printf("What is the name of this project?\n")
-	fmt.Printf("%s\n\n", ui.GetProjectName())
+	prog.CreateProject()
 
-	fmt.Printf("Who is the author of this project?\n")
-	fmt.Printf("%s\n\n", ui.GetProjectAuthor())
-
-	fmt.Printf("What language will this project be written in?\n")
-	fmt.Printf("%s\n\n", ui.GetProjectLanguage())
+	fmt.Println(*prog)
 }
