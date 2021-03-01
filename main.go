@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"github.com/gregfolker/auto-project-builder/pkg/project"
+	"github.com/gregfolker/auto-project-builder/internal/ui"
 )
 
 const (
@@ -14,7 +15,7 @@ func main() {
 
 	prog := project.NewProject()
 
-	prog.CreateProject()
+	ui.GetUserInput(prog)
 
 	fmt.Println(*prog)
 }

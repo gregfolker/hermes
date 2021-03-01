@@ -1,22 +1,35 @@
 package ui
 
 import (
+	"fmt"
 	"github.com/c-bata/go-prompt"
+	"github.com/gregfolker/auto-project-builder/pkg/project"
 )
 
 const (
 	PromptPrefix = ">> "
 )
 
-func GetProjectAuthor() string {
+func GetUserInput(p *project.Project) {
+	fmt.Printf("What is the name of this project?\n")
+	p.Name = getProjectName()
+
+	fmt.Printf("Who is the author of this project?\n")
+	p.Author = getProjectAuthor()
+
+	fmt.Printf("What language will this project be written in?\n")
+	p.Language = getProjectLanguage()
+}
+
+func getProjectAuthor() string {
 	return prompt.Input(PromptPrefix, authorAutoCompleter)
 }
 
-func GetProjectName() string {
+func getProjectName() string {
 	return prompt.Input(PromptPrefix, emptyAutoCompleter)
 }
 
-func GetProjectLanguage() string {
+func getProjectLanguage() string {
 	return prompt.Input(PromptPrefix, languageAutoCompleter)
 }
 
