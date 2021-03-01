@@ -9,4 +9,5 @@ const (
 	RUST_EXT = ".rs"
 	BASH_EXT = ".sh"
 	PERL_EXT = ".pl"
+	MARKDOWN_EXT = ".md"
 )
