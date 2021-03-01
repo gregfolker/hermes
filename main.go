@@ -15,7 +15,10 @@ func main() {
 
 	prog := project.NewProject()
 
-	ui.GetUserInput(prog)
+	if err := ui.GetUserInput(prog); err != nil {
+		fmt.Printf("\nError: %v\n\n", err)
+		return
+	}
 
-	fmt.Println(*prog)
+	fmt.Printf("\n%v\n\n", *prog)
 }

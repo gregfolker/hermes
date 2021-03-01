@@ -2,6 +2,7 @@ package ui
 
 import (
 	"fmt"
+	"errors"
 	"github.com/c-bata/go-prompt"
 	"github.com/gregfolker/auto-project-builder/pkg/project"
 )
@@ -10,7 +11,7 @@ const (
 	PromptPrefix = ">> "
 )
 
-func GetUserInput(p *project.Project) {
+func GetUserInput(p *project.Project) error {
 	fmt.Printf("What is the name of this project?\n")
 	p.Name = getProjectName()
 
@@ -19,6 +20,24 @@ func GetUserInput(p *project.Project) {
 
 	fmt.Printf("What language will this project be written in?\n")
 	p.Language = getProjectLanguage()
+
+	return validateUserInput(p)
+}
+
+func validateUserInput(p *project.Project) error {
+	if p.Name == "" {
+		return errors.New("No project name provided")
+	}
+
+	if p.Author == "" {
+		return errors.New("No author provided")
+	}
+
+	if p.Language == "" {
+		return errors.New("No language provided")
+	}
+
+	return nil
 }
 
 func getProjectAuthor() string {
