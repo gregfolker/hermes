@@ -20,5 +20,10 @@ func main() {
 		return
 	}
 
-	fmt.Printf("\n%v\n\n", *prog)
+	if err := prog.CreateNewProjectDir(); err != nil {
+		fmt.Printf("\nError: %v\n\n", err)
+		return
+	}
+
+	fmt.Printf("\nCreated %s\n\n", prog.Path)
 }
