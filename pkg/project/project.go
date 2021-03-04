@@ -4,6 +4,7 @@ import (
 	"os"
 	"path"
 	"strings"
+	"fmt"
 )
 
 type Project struct {
@@ -28,6 +29,12 @@ func (prog *Project) CreateNewProjectDir() error {
 
 	prog.Path = path.Join(userHome, strings.ToLower(prog.Language), "src", strings.ToLower(prog.Name))
 
-	return os.MkdirAll(prog.Path, os.FileMode(0755))
+	if err := os.MkdirAll(prog.Path, os.FileMode(0755)); err != nil {
+		return err
+	}
+
+	fmt.Printf("Created new project directory %s\n", prog.Path)
+
+	return nil
 }
 
