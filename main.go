@@ -26,7 +26,7 @@ func main() {
 		return
 	}
 
-	fmt.Printf("\nCreated %s\n", prog.Path)
+	fmt.Printf("\nCreated new project directory %s\n", prog.Path)
 
 	if err := files.CreateREADME(prog); err != nil {
 		fmt.Printf("\nError: %v\n\n", err)
