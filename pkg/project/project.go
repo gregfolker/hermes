@@ -30,3 +30,4 @@ func (prog *Project) CreateNewProjectDir() error {
 
 	return os.MkdirAll(prog.Path, os.FileMode(0755))
 }
+
