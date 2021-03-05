@@ -1,5 +1,11 @@
 package templates
 
+import (
+	"fmt"
+	"errors"
+	"strings"
+)
+
 const (
 
 README_TEMPLATE =
@@ -74,3 +80,34 @@ fn main() {
 `
 
 )
+
+func GetMainTemplate(language string) (string, error) {
+	var err error
+	t := ""
+
+	switch strings.ToLower(language) {
+	case "go":
+		t = GO_MAIN_TEMPLATE
+		err = nil
+	case "c":
+		t = C_MAIN_TEMPLATE
+		err = nil
+	case "python":
+		t = PY_MAIN_TEMPLATE
+		err = nil
+	case "java":
+		t = JAVA_MAIN_TEMPLATE
+		err = nil
+	case "rust":
+		t = RUST_MAIN_TEMPLATE
+		err = nil
+	case "bash", "perl":
+		// Bash and Perl do not require main program files, so it is not an error
+		// Do nothing in this case, returning a blank template and no error
+		fmt.Printf("%s does not have a main file template, skipping...\n", language)
+	default:
+		err = errors.New("Unknown language " + language + ", unable to retrieve main file template\n")
+	}
+
+	return t, err
+}

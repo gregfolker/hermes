@@ -11,6 +11,16 @@ var LanguageToExtension = map[string]string {
 	MARKDOWN: MARKDOWN_EXT,
 }
 
+var LanguageToCommentStyle = map[string]string {
+	GOLANG: GO_COMMENT_LEADER,
+	C: C_COMMENT_LEADER,
+	PYTHON: PYTHON_COMMENT_LEADER,
+	JAVA: JAVA_COMMENT_LEADER,
+	RUST: RUST_COMMENT_LEADER,
+	BASH: BASH_COMMENT_LEADER,
+	PERL: PERL_COMMENT_LEADER,
+}
+
 // Supported Languages
 const (
 	GOLANG = "go"

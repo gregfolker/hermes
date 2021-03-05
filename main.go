@@ -29,4 +29,9 @@ func main() {
 		fmt.Printf("\nError: %v\n\n", err)
 		return
 	}
+
+	if err := prog.CreateProjectFile("main"); err != nil {
+		fmt.Printf("\nError: %v\n\n", err)
+		return
+	}
 }

@@ -51,6 +51,8 @@ func (prog *Project) CreateProjectFile(filename string) error {
 	switch filename {
 	case "README":
 		files.GenerateReadMe(f + languages.MARKDOWN_EXT, prog.Name, prog.Author)
+	case "main":
+		return files.GenerateMain(f, prog.Name, prog.Author, prog.Language)
 	default:
 		return errors.New("Unknown file " + filename + ", unable to create\n")
 	}
