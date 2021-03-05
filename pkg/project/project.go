@@ -5,6 +5,9 @@ import (
 	"path"
 	"strings"
 	"fmt"
+	"errors"
+	"github.com/gregfolker/auto-project-builder/pkg/files"
+	"github.com/gregfolker/auto-project-builder/pkg/languages"
 )
 
 type Project struct {
@@ -38,3 +41,19 @@ func (prog *Project) CreateNewProjectDir() error {
 	return nil
 }
 
+func (prog *Project) CreateProjectFile(filename string) error {
+	if prog.Path == "" {
+		return errors.New("Project directory does not exist\n")
+	}
+
+	f := path.Join(prog.Path, filename)
+
+	switch filename {
+	case "README":
+		files.GenerateReadMe(f + languages.MARKDOWN_EXT, prog.Name, prog.Author)
+	default:
+		return errors.New("Unknown file " + filename + ", unable to create\n")
+	}
+
+	return nil
+}

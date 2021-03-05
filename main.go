@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"github.com/gregfolker/auto-project-builder/pkg/project"
 	"github.com/gregfolker/auto-project-builder/internal/ui"
-	"github.com/gregfolker/auto-project-builder/pkg/files"
 )
 
 const (
@@ -26,7 +25,7 @@ func main() {
 		return
 	}
 
-	if err := files.CreateREADME(prog); err != nil {
+	if err := prog.CreateProjectFile("README"); err != nil {
 		fmt.Printf("\nError: %v\n\n", err)
 		return
 	}

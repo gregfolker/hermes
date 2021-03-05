@@ -2,38 +2,20 @@ package files
 
 import (
 	"fmt"
-	"path"
+	"os"
 	"io/ioutil"
-	"github.com/gregfolker/auto-project-builder/pkg/project"
+	"github.com/gregfolker/auto-project-builder/internal/templates"
 )
 
-// Common file extensions
-const (
-	GO_EXT = ".go"
-	C_EXT = ".c"
-	PYTHON_EXT = ".py"
-	JAVA_EXT = ".java"
-	RUST_EXT = ".rs"
-	BASH_EXT = ".sh"
-	PERL_EXT = ".pl"
-	MARKDOWN_EXT = ".md"
-)
+func GenerateReadMe(readme string, title string, author string) error {
+	fmt.Printf("Creating %s...\n", readme)
 
-const (
-	SEP = "------------------"
-)
+	contents := []byte("## " + title + templates.README_TEMPLATE + "\nAuthor: "+ author + "\n")
 
-func CreateREADME(prog *project.Project) error {
-	f := path.Join(prog.Path, "README" + MARKDOWN_EXT)
-
-	fmt.Printf("\nCreating %s...\n\n", f)
-
-	contents := []byte(prog.Name + "\n" + SEP + "\n")
-
-	if err := ioutil.WriteFile(f, contents, 0755); err != nil {
+	if err := ioutil.WriteFile(readme, contents, os.FileMode(0755)); err != nil {
 		return err
 	} else {
-		fmt.Printf("Generated %s\n", f)
+		fmt.Printf("Generated %s\n", readme)
 	}
 
 	return nil
