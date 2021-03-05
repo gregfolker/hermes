@@ -39,8 +39,6 @@ func GenerateTODO(file string, title string) error {
 }
 
 func GenerateMain(file string, progName string, author string, language string) error {
-	fmt.Printf("Creating %s...\n", file)
-
 	c := languages.LanguageToCommentStyle[strings.ToLower(language)]
 
 	t, err := templates.GetMainTemplate(language)
@@ -50,6 +48,8 @@ func GenerateMain(file string, progName string, author string, language string) 
 	}
 
 	contents := []byte(c + " Project: " + progName + "\n" + c + " Author: " + author + "\n" + t)
+
+	fmt.Printf("Creating %s...\n", file + languages.LanguageToExtension[strings.ToLower(language)])
 
 	if err := ioutil.WriteFile(file + languages.LanguageToExtension[strings.ToLower(language)], contents, os.FileMode(0644)); err != nil {
 		return err
