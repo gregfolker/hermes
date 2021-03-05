@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"errors"
 	"strings"
+	"github.com/gregfolker/auto-project-builder/pkg/colors"
 )
 
 const (
@@ -104,7 +105,7 @@ func GetMainTemplate(language string) (string, error) {
 	case "bash", "perl":
 		// Bash and Perl do not require main program files, so it is not an error
 		// Do nothing in this case, returning a blank template and no error
-		fmt.Printf("%s does not have a main file template, skipping...\n", language)
+		fmt.Printf(colors.ANSI_YELLOW + "Warning: " + colors.ANSI_RESET + "%s does not have a main file template, skipping...\n", language)
 	default:
 		err = errors.New("Unknown language " + language + ", unable to retrieve main file template\n")
 	}

@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"github.com/gregfolker/auto-project-builder/pkg/project"
+	"github.com/gregfolker/auto-project-builder/pkg/colors"
 	"github.com/gregfolker/auto-project-builder/internal/ui"
 )
 
@@ -16,22 +17,22 @@ func main() {
 	prog := project.NewProject()
 
 	if err := ui.GetUserInput(prog); err != nil {
-		fmt.Printf("\nError: %v\n\n", err)
+		fmt.Printf(colors.ANSI_RED + "Error: " + colors.ANSI_RESET + "%v\n\n", err)
 		return
 	}
 
 	if err := prog.CreateNewProjectDir(); err != nil {
-		fmt.Printf("\nError: %v\n\n", err)
+		fmt.Printf(colors.ANSI_RED + "Error: " + colors.ANSI_RESET + "%v\n\n", err)
 		return
 	}
 
 	if err := prog.CreateProjectFile("README"); err != nil {
-		fmt.Printf("\nError: %v\n\n", err)
+		fmt.Printf(colors.ANSI_RED + "Error: " + colors.ANSI_RESET + "%v\n\n", err)
 		return
 	}
 
 	if err := prog.CreateProjectFile("main"); err != nil {
-		fmt.Printf("\nError: %v\n\n", err)
+		fmt.Printf(colors.ANSI_RED + "Error: " + colors.ANSI_RESET + "%v\n\n", err)
 		return
 	}
 }
