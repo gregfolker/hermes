@@ -31,6 +31,11 @@ func main() {
 		return
 	}
 
+	if err := prog.CreateProjectFile("TODO"); err != nil {
+		fmt.Printf(colors.ANSI_RED + "Error: " + colors.ANSI_RESET + "%v\n\n", err)
+		return
+	}
+
 	if err := prog.CreateProjectFile("main"); err != nil {
 		fmt.Printf(colors.ANSI_RED + "Error: " + colors.ANSI_RESET + "%v\n\n", err)
 		return

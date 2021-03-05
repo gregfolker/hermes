@@ -24,6 +24,20 @@ func GenerateReadMe(file string, title string, author string) error {
 	return nil
 }
 
+func GenerateTODO(file string, title string) error {
+	fmt.Printf("Creating %s...\n", file)
+
+	contents := []byte("## " + title + templates.TODO_TEMPLATE + "\n")
+
+	if err := ioutil.WriteFile(file, contents, os.FileMode(0755)); err != nil {
+		return err
+	} else {
+		fmt.Printf(colors.ANSI_GREEN + "Generated: " + colors.ANSI_RESET + "%s\n", file)
+	}
+
+	return nil
+}
+
 func GenerateMain(file string, progName string, author string, language string) error {
 	fmt.Printf("Creating %s...\n", file)
 

@@ -59,6 +59,8 @@ func (prog *Project) CreateProjectFile(filename string) error {
 	switch filename {
 	case "README":
 		return files.GenerateReadMe(f + languages.MARKDOWN_EXT, prog.Name, prog.Author)
+	case "TODO":
+		return files.GenerateTODO(f + languages.MARKDOWN_EXT, prog.Name)
 	case "main":
 		return files.GenerateMain(f, prog.Name, prog.Author, prog.Language)
 	default:
