@@ -21,6 +21,8 @@ func main() {
 		return
 	}
 
+	fmt.Printf("\nGenerating project...\n\n")
+
 	if err := prog.CreateNewProjectDir(); err != nil {
 		fmt.Printf(colors.ANSI_RED + "Error: " + colors.ANSI_RESET + "%v\n\n", err)
 		return

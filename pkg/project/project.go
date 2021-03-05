@@ -8,6 +8,7 @@ import (
 	"errors"
 	"github.com/gregfolker/auto-project-builder/pkg/files"
 	"github.com/gregfolker/auto-project-builder/pkg/languages"
+	"github.com/gregfolker/auto-project-builder/pkg/colors"
 )
 
 type Project struct {
@@ -48,11 +49,13 @@ func (prog *Project) CreateNewProjectDir() error {
 
 	prog.Path = path.Join(userHome, strings.ToLower(prog.Language), "src", dir)
 
+	fmt.Printf("Creating %s...\n", prog.Path)
+
 	if err := os.MkdirAll(prog.Path, os.FileMode(0755)); err != nil {
 		return err
 	}
 
-	fmt.Printf("Created new project directory %s\n", prog.Path)
+	fmt.Printf(colors.ANSI_GREEN + "Generated: " + colors.ANSI_RESET + "%s\n", prog.Path)
 
 	return nil
 }
