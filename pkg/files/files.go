@@ -10,15 +10,15 @@ import (
 	"github.com/gregfolker/auto-project-builder/pkg/colors"
 )
 
-func GenerateReadMe(readme string, title string, author string) error {
-	fmt.Printf("Creating %s...\n", readme)
+func GenerateReadMe(file string, title string, author string) error {
+	fmt.Printf("Creating %s...\n", file)
 
 	contents := []byte("## " + title + templates.README_TEMPLATE + "\nAuthor: "+ author + "\n")
 
-	if err := ioutil.WriteFile(readme, contents, os.FileMode(0755)); err != nil {
+	if err := ioutil.WriteFile(file, contents, os.FileMode(0755)); err != nil {
 		return err
 	} else {
-		fmt.Printf(colors.ANSI_GREEN + "Generated: " + colors.ANSI_RESET + "%s\n", readme)
+		fmt.Printf(colors.ANSI_GREEN + "Generated: " + colors.ANSI_RESET + "%s\n", file)
 	}
 
 	return nil
