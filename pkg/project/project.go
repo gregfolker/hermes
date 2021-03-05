@@ -41,7 +41,7 @@ func (prog *Project) CreateNewProjectDir() error {
 
 	// Avoid creating directories with spaces
 	if strings.Contains(prog.Name, " ") {
-		dir = strings.ReplaceAll(prog.Name, " ", "-")
+		dir = strings.ReplaceAll(strings.ToLower(prog.Name), " ", "-")
 	} else {
 		dir = strings.ToLower(prog.Name)
 	}
