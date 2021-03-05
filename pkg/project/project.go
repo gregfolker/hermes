@@ -23,6 +23,14 @@ func NewProject() *Project {
 	return p
 }
 
+func (prog Project) PrintProjectInfo() {
+	fmt.Printf("\n--- New Project Details ---\n")
+	fmt.Printf("Project Name: %s\n", prog.Name)
+	fmt.Printf("Author: %s\n", prog.Author)
+	fmt.Printf("Language: %s\n", prog.Language)
+	fmt.Printf("Path: %s\n", prog.Path)
+}
+
 func (prog *Project) CreateNewProjectDir() error {
 	var dir string
 	userHome, err := os.UserHomeDir()

@@ -40,4 +40,7 @@ func main() {
 		fmt.Printf(colors.ANSI_RED + "Error: " + colors.ANSI_RESET + "%v\n\n", err)
 		return
 	}
+
+	prog.PrintProjectInfo()
+	fmt.Printf("\nDone!\n")
 }
