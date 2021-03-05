@@ -15,7 +15,7 @@ func GenerateReadMe(file string, title string, author string) error {
 
 	contents := []byte("## Project: " + title +"\n" + "## Author: " + author + "\n" + templates.README_TEMPLATE)
 
-	if err := ioutil.WriteFile(file, contents, os.FileMode(0755)); err != nil {
+	if err := ioutil.WriteFile(file, contents, os.FileMode(0644)); err != nil {
 		return err
 	} else {
 		fmt.Printf(colors.ANSI_GREEN + "Generated: " + colors.ANSI_RESET + "%s\n", file)
@@ -29,7 +29,7 @@ func GenerateTODO(file string, title string) error {
 
 	contents := []byte("## " + title + templates.TODO_TEMPLATE + "\n")
 
-	if err := ioutil.WriteFile(file, contents, os.FileMode(0755)); err != nil {
+	if err := ioutil.WriteFile(file, contents, os.FileMode(0644)); err != nil {
 		return err
 	} else {
 		fmt.Printf(colors.ANSI_GREEN + "Generated: " + colors.ANSI_RESET + "%s\n", file)
@@ -51,7 +51,7 @@ func GenerateMain(file string, progName string, author string, language string) 
 
 	contents := []byte(c + " Project: " + progName + "\n" + c + " Author: " + author + "\n" + t)
 
-	if err := ioutil.WriteFile(file + languages.LanguageToExtension[strings.ToLower(language)], contents, os.FileMode(0755)); err != nil {
+	if err := ioutil.WriteFile(file + languages.LanguageToExtension[strings.ToLower(language)], contents, os.FileMode(0644)); err != nil {
 		return err
 	} else {
 		fmt.Printf(colors.ANSI_GREEN + "Generated: " + colors.ANSI_RESET + "%s\n", file + languages.LanguageToExtension[strings.ToLower(language)])
