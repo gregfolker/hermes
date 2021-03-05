@@ -13,7 +13,7 @@ import (
 func GenerateReadMe(file string, title string, author string) error {
 	fmt.Printf("Creating %s...\n", file)
 
-	contents := []byte("## " + title + templates.README_TEMPLATE + "\nAuthor: "+ author + "\n")
+	contents := []byte("## Project: " + title +"\n" + "## Author: " + author + "\n" + templates.README_TEMPLATE)
 
 	if err := ioutil.WriteFile(file, contents, os.FileMode(0755)); err != nil {
 		return err
