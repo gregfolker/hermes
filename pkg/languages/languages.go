@@ -34,3 +34,14 @@ const (
 	PERL_EXT = ".pl"
 	MARKDOWN_EXT = ".md"
 )
+
+// Language Comment Styles
+const (
+	GO_COMMENT_LEADER = "//"
+	C_COMMENT_LEADER = "//"
+	PYTHON_COMMENT_LEADER = "#"
+	JAVA_COMMENT_LEADER = "//"
+	RUST_COMMENT_LEADER = "//"
+	BASH_COMMENT_LEADER = "#"
+	PERL_COMMENT_LEADER = "#"
+)
