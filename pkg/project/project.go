@@ -24,13 +24,21 @@ func NewProject() *Project {
 }
 
 func (prog *Project) CreateNewProjectDir() error {
+	var dir string
 	userHome, err := os.UserHomeDir()
 
 	if err != nil {
 		return err
 	}
 
-	prog.Path = path.Join(userHome, strings.ToLower(prog.Language), "src", strings.ToLower(prog.Name))
+	// Avoid creating directories with spaces
+	if strings.Contains(prog.Name, " ") {
+		dir = strings.ReplaceAll(prog.Name, " ", "-")
+	} else {
+		dir = strings.ToLower(prog.Name)
+	}
+
+	prog.Path = path.Join(userHome, strings.ToLower(prog.Language), "src", dir)
 
 	if err := os.MkdirAll(prog.Path, os.FileMode(0755)); err != nil {
 		return err
