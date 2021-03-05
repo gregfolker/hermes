@@ -8,6 +8,14 @@ README_TEMPLATE =
 -----------------
 `
 
+TODO_TEMPLATE =
+`
+## TODO:
+	-
+	-
+	-
+`
+
 GO_MAIN_TEMPLATE =
 `
 package main
