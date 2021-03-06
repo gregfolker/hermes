@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/gregfolker/auto-project-builder/pkg/project"
 	"github.com/gregfolker/auto-project-builder/pkg/colors"
+	"github.com/gregfolker/auto-project-builder/pkg/git"
 	"github.com/gregfolker/auto-project-builder/internal/ui"
 )
 
@@ -39,6 +40,11 @@ func main() {
 	}
 
 	if err := prog.CreateProjectFile("main"); err != nil {
+		fmt.Printf(colors.ANSI_RED + "Error: " + colors.ANSI_RESET + "%v\n\n", err)
+		return
+	}
+
+	if err := git.InitializeNewRepo(prog.Path); err != nil {
 		fmt.Printf(colors.ANSI_RED + "Error: " + colors.ANSI_RESET + "%v\n\n", err)
 		return
 	}
