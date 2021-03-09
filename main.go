@@ -18,34 +18,34 @@ func main() {
 	prog := project.NewProject()
 
 	if err := ui.GetUserInput(prog); err != nil {
-		fmt.Printf(colors.ANSI_RED + "Error: " + colors.ANSI_RESET + "%v\n\n", err)
+		fmt.Printf(colors.ColorText("Error: ", colors.ANSI_RED) + "%v\n\n", err)
 		return
 	}
 
 	fmt.Printf("\nGenerating project...\n\n")
 
 	if err := prog.CreateNewProjectDir(); err != nil {
-		fmt.Printf(colors.ANSI_RED + "Error: " + colors.ANSI_RESET + "%v\n\n", err)
+		fmt.Printf(colors.ColorText("Error: ", colors.ANSI_RED) + "%v\n\n", err)
 		return
 	}
 
 	if err := prog.CreateProjectFile("README"); err != nil {
-		fmt.Printf(colors.ANSI_RED + "Error: " + colors.ANSI_RESET + "%v\n\n", err)
+		fmt.Printf(colors.ColorText("Error: ", colors.ANSI_RED) + "%v\n\n", err)
 		return
 	}
 
 	if err := prog.CreateProjectFile("TODO"); err != nil {
-		fmt.Printf(colors.ANSI_RED + "Error: " + colors.ANSI_RESET + "%v\n\n", err)
+		fmt.Printf(colors.ColorText("Error: ", colors.ANSI_RED) + "%v\n\n", err)
 		return
 	}
 
 	if err := prog.CreateProjectFile("main"); err != nil {
-		fmt.Printf(colors.ANSI_RED + "Error: " + colors.ANSI_RESET + "%v\n\n", err)
+		fmt.Printf(colors.ColorText("Error: ", colors.ANSI_RED) + "%v\n\n", err)
 		return
 	}
 
 	if err := git.InitializeNewRepo(prog.Path); err != nil {
-		fmt.Printf(colors.ANSI_RED + "Error: " + colors.ANSI_RESET + "%v\n\n", err)
+		fmt.Printf(colors.ColorText("Error: ", colors.ANSI_RED) + "%v\n\n", err)
 		return
 	}
 

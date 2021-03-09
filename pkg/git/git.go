@@ -22,10 +22,10 @@ func InitializeNewRepo(path string) error {
 	cmd := exec.Command("sh", "-c", "git init " + path)
 
 	if err := cmd.Run(); err != nil {
-		fmt.Printf("Creating git repository " + colors.ANSI_RED + "failed\n")
+		fmt.Printf("Creating git repository " + colors.ColorText("failed", colors.ANSI_RED) + "\n")
 		return err
 	} else {
-		fmt.Printf(colors.ANSI_GREEN + "Generated " + colors.ANSI_RESET + "new git repository at %s\n", path)
+		fmt.Printf(colors.ColorText("Generated: ", colors.ANSI_GREEN) + "Generated " + colors.ANSI_RESET + "new git repository at %s\n", path)
 	}
 
 	return nil

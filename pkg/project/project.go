@@ -55,7 +55,7 @@ func (prog *Project) CreateNewProjectDir() error {
 		return err
 	}
 
-	fmt.Printf(colors.ANSI_GREEN + "Generated: " + colors.ANSI_RESET + "%s\n", prog.Path)
+	fmt.Printf(colors.ColorText("Generated: ", colors.ANSI_GREEN) + "%s\n", prog.Path)
 
 	return nil
 }

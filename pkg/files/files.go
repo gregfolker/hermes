@@ -18,7 +18,7 @@ func GenerateReadMe(file string, title string, author string) error {
 	if err := ioutil.WriteFile(file, contents, os.FileMode(0644)); err != nil {
 		return err
 	} else {
-		fmt.Printf(colors.ANSI_GREEN + "Generated: " + colors.ANSI_RESET + "%s\n", file)
+		fmt.Printf(colors.ColorText("Generated: ", colors.ANSI_GREEN) + "%s\n", file)
 	}
 
 	return nil
@@ -32,7 +32,7 @@ func GenerateTODO(file string, title string) error {
 	if err := ioutil.WriteFile(file, contents, os.FileMode(0644)); err != nil {
 		return err
 	} else {
-		fmt.Printf(colors.ANSI_GREEN + "Generated: " + colors.ANSI_RESET + "%s\n", file)
+		fmt.Printf(colors.ColorText("Generated: ", colors.ANSI_GREEN) + "%s\n", file)
 	}
 
 	return nil
@@ -54,7 +54,7 @@ func GenerateMain(file string, progName string, author string, language string) 
 	if err := ioutil.WriteFile(file + languages.LanguageToExtension[strings.ToLower(language)], contents, os.FileMode(0644)); err != nil {
 		return err
 	} else {
-		fmt.Printf(colors.ANSI_GREEN + "Generated: " + colors.ANSI_RESET + "%s\n", file + languages.LanguageToExtension[strings.ToLower(language)])
+		fmt.Printf(colors.ColorText("Generated: ", colors.ANSI_GREEN) + "%s\n", file + languages.LanguageToExtension[strings.ToLower(language)])
 	}
 
 	return nil
