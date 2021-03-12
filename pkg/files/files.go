@@ -47,6 +47,12 @@ func GenerateMain(file string, progName string, author string, language string) 
 		return err
 	}
 
+	if strings.ToLower(language) == languages.JAVA {
+		// The files for Java will be created via Maven when initializing the project directory structure, so just quietly return here
+		// instead of using the existing template for main.java
+		return nil
+	}
+
 	contents := []byte(c + " Project: " + progName + "\n" + c + " Author: " + author + "\n" + t)
 
 	fmt.Printf("Creating %s...\n", file + languages.LanguageToExtension[strings.ToLower(language)])

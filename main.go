@@ -29,6 +29,11 @@ func main() {
 		return
 	}
 
+	if err := prog.CreateNewProjectSubDirs(); err != nil {
+		errorutil.PrintError(err)
+		return
+	}
+
 	if err := prog.CreateProjectFile("README"); err != nil {
 		errorutil.PrintError(err)
 		return

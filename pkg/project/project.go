@@ -60,6 +60,30 @@ func (prog *Project) CreateNewProjectDir() error {
 	return nil
 }
 
+func (prog *Project) CreateNewProjectSubDirs() error {
+	var err error
+
+	if prog.Path == "" {
+		return errors.New("Cannot create project subdirectory structure; Project path does not exist\n")
+	}
+
+	fmt.Printf("Initializing project structure...\n")
+
+	switch strings.ToLower(prog.Language) {
+	case languages.GOLANG:
+		err = languages.InitGolangDirs(prog.Path)
+	case languages.C:
+		err = languages.InitCDirs(prog.Path)
+	case languages.JAVA:
+		err = languages.InitJavaDirs(prog.Path)
+	default:
+		fmt.Printf("Nothing additional to create for %s project...\n", prog.Language)
+		err = nil
+	}
+
+	return err
+}
+
 func (prog *Project) CreateProjectFile(filename string) error {
 	if prog.Path == "" {
 		return errors.New("Project directory does not exist\n")

@@ -1,5 +1,13 @@
 package languages
 
+import (
+	"os"
+	"os/exec"
+	"fmt"
+	"path/filepath"
+	"github.com/gregfolker/auto-project-builder/pkg/colors"
+)
+
 var LanguageToExtension = map[string]string {
 	GOLANG: GO_EXT,
 	C: C_EXT,
@@ -55,3 +63,56 @@ const (
 	BASH_COMMENT_LEADER = "#"
 	PERL_COMMENT_LEADER = "#"
 )
+
+func InitGolangDirs(p string) error {
+	if err := os.MkdirAll(filepath.Join(p, "pkg"), os.FileMode(0755)); err != nil {
+		return err
+	}
+
+	if err := os.MkdirAll(filepath.Join(p, "internal"), os.FileMode(0755)); err != nil {
+		return err
+	}
+
+	fmt.Printf(colors.ColorText("Generated ", colors.ANSI_GREEN) + "project structure for %s\n", p)
+
+	return nil
+}
+
+func InitCDirs(p string) error {
+	if err := os.MkdirAll(filepath.Join(p, "src"), os.FileMode(0755)); err != nil {
+		return err
+	}
+
+	if err := os.MkdirAll(filepath.Join(p, "inc"), os.FileMode(0755)); err != nil {
+		return err
+	}
+
+	fmt.Printf(colors.ColorText("Generated ", colors.ANSI_GREEN) + "project structure for %s\n", p)
+
+	return nil
+}
+
+func InitJavaDirs(p string) error {
+	var cmd *exec.Cmd
+
+	// Verify Maven is installed on the system
+	cmd = exec.Command("sh", "-c", "mvn --version")
+
+	appName := filepath.Base(p)
+
+	if err := cmd.Run(); err != nil {
+		return err
+	}
+
+	// Use Maven to generate the standard project structure for Java programs in the new project directory
+	cmd = exec.Command("sh", "-c", "mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=" + appName + " -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.4 -DinteractiveMode=false")
+	cmd.Dir = p
+
+	if err := cmd.Run(); err != nil {
+		return err
+	}
+
+	fmt.Printf(colors.ColorText("Generated ", colors.ANSI_GREEN) + "project structure for %s\n", p)
+
+	return nil
+}
