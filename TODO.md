@@ -1,8 +1,12 @@
 
 ## TODO:
    - Add CLI interface with github.com/spf13/cobra module
-   - Add support for multiple authors on a single project
-      - Add support for adding authors to existing projects
+   - ~~Add support for multiple authors on a single project~~
+   - Add support for modifying existing projects
+      - Adding/Removing contributors
+      - Changing repo location (Remote origin URL)
+      - Changing the project name
+      - Changing the local directory of the project
    - Add support for initializing cargo with Rust projects
    - Add support for getting author email addresses from the user
    - Add support for interactively getting README and TODO file contents from the user
