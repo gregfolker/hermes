@@ -2,6 +2,7 @@ package ui
 
 import (
 	"fmt"
+	"strconv"
 	"errors"
 	"github.com/c-bata/go-prompt"
 	"github.com/gregfolker/auto-project-builder/pkg/project"
@@ -15,8 +16,25 @@ func GetUserInput(p *project.Project) error {
 	fmt.Printf("What is the name of this project?\n")
 	p.Name = getProjectName()
 
-	fmt.Printf("Who is the author of this project?\n")
-	p.Author = getProjectAuthor()
+	fmt.Printf("Who is the primary author of this project?\n")
+	p.Author = getProjectContributor()
+
+	fmt.Printf("How many additional people will contribute this project?\n")
+
+	contributorCount, err := strconv.Atoi(getNumberOfContributors())
+
+	if err != nil {
+		return err
+	}
+
+	// One contributor assumes the primary author is the only contributor, so
+	// only retrieve additional input from the user if number of contributors > 1
+	if contributorCount > 0 {
+		for c := 0; c < contributorCount; c++ {
+			fmt.Printf("What is the name of contributor #%v?\n", c + 1)
+			p.Contributors = append(p.Contributors, getProjectContributor())
+		}
+	}
 
 	fmt.Printf("What language will this project be written in?\n")
 	p.Language = getProjectLanguage()
@@ -30,18 +48,26 @@ func validateUserInput(p *project.Project) error {
 	}
 
 	if p.Author == "" {
-		return errors.New("No author provided")
+		return errors.New("No primary author provided")
 	}
 
 	if p.Language == "" {
 		return errors.New("No language provided")
 	}
 
+	if len(p.Contributors) > 1 {
+		for c := 0; c < len(p.Contributors); c++ {
+			if p.Contributors[c] == "" {
+				return errors.New("No name provided for contributor #" + strconv.Itoa(c + 1) + "\n")
+			}
+		}
+	}
+
 	return nil
 }
 
-func getProjectAuthor() string {
-	return prompt.Input(PromptPrefix, authorAutoCompleter)
+func getProjectContributor() string {
+	return prompt.Input(PromptPrefix, nameAutoCompleter)
 }
 
 func getProjectName() string {
@@ -52,7 +78,11 @@ func getProjectLanguage() string {
 	return prompt.Input(PromptPrefix, languageAutoCompleter)
 }
 
-func authorAutoCompleter(d prompt.Document) []prompt.Suggest {
+func getNumberOfContributors() string {
+	return prompt.Input(PromptPrefix, emptyAutoCompleter)
+}
+
+func nameAutoCompleter(d prompt.Document) []prompt.Suggest {
 	s := []prompt.Suggest {
 		{Text: "Greg Folker"},
 	}

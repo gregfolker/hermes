@@ -16,6 +16,7 @@ type Project struct {
 	Author string
 	Language string
 	Path string
+	Contributors []string
 }
 
 func NewProject() *Project {
@@ -27,7 +28,19 @@ func NewProject() *Project {
 func (prog Project) PrintProjectInfo() {
 	fmt.Printf("\n--- New Project Details ---\n")
 	fmt.Printf("Project Name: %s\n", prog.Name)
-	fmt.Printf("Author: %s\n", prog.Author)
+	fmt.Printf("Primary Author: %s\n", prog.Author)
+
+	if len(prog.Contributors) > 0 {
+		fmt.Printf("Additional Contributor(s):")
+		for c := 0; c < len(prog.Contributors); c++ {
+			fmt.Printf(" %s", prog.Contributors[c])
+			if c + 1 != len(prog.Contributors) {
+				fmt.Printf(",")
+			}
+		}
+		fmt.Printf("\n")
+	}
+
 	fmt.Printf("Language: %s\n", prog.Language)
 	fmt.Printf("Path: %s\n", prog.Path)
 }
@@ -93,11 +106,11 @@ func (prog *Project) CreateProjectFile(filename string) error {
 
 	switch filename {
 	case "README":
-		return files.GenerateReadMe(f + languages.MARKDOWN_EXT, prog.Name, prog.Author)
+		return files.GenerateReadMe(f + languages.MARKDOWN_EXT, prog.Name, prog.Author, prog.Contributors)
 	case "TODO":
 		return files.GenerateTODO(f + languages.MARKDOWN_EXT, prog.Name)
 	case "main":
-		return files.GenerateMain(f, prog.Name, prog.Author, prog.Language)
+		return files.GenerateMain(f, prog.Name, prog.Author, prog.Contributors, prog.Language)
 	default:
 		return errors.New("Unknown file " + filename + ", unable to create\n")
 	}
