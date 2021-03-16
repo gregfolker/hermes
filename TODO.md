@@ -13,3 +13,4 @@
    - Add support for getting git usernames from the user
    - Add support for getting the service that will host the git repository (Github, Gitlab, Bitbucket, etc.)
       - Add support for setting the upstream URL after running `git init` in the new project
+   - Add support for C++
