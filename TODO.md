@@ -15,3 +15,4 @@
       - Add support for setting the upstream URL after running `git init` in the new project
    - Add support for C++
    - ~~Add better error handling support using the github.com/pkg/errors module~~
+   - Print the version of the tool with the name
