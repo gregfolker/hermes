@@ -33,6 +33,8 @@ func ColorText(text string, color string) string {
 			t = gray(text)
 		case ANSI_WHITE:
 			t = white(text)
+		default:
+			t = text
 	}
 
 	return t
