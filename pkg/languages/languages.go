@@ -92,6 +92,32 @@ func InitCDirs(p string) error {
 	return nil
 }
 
+func InitRustDirs(p string) error {
+	var cmd *exec.Cmd
+
+	if err := os.MkdirAll(filepath.Join(p, "src"), os.FileMode(0755)); err != nil {
+   		return err
+	}
+
+	// Verify Rust is installed on the system
+	cmd = exec.Command("sh", "-c", "rustc --version")
+
+	if err := cmd.Run(); err != nil {
+		return err
+	}
+
+	cmd = exec.Command("sh", "-c", "cargo init")
+	cmd.Dir = p
+
+	if err := cmd.Run(); err != nil {
+		return err
+	}
+
+	fmt.Printf(colors.ColorText("Generated ", colors.ANSI_GREEN) + "project structure for %s\n", p)
+
+	return nil
+}
+
 func InitJavaDirs(p string) error {
 	var cmd *exec.Cmd
 

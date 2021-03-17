@@ -89,6 +89,8 @@ func (prog *Project) CreateNewProjectSubDirs() error {
 		err = languages.InitCDirs(prog.Path)
 	case languages.JAVA:
 		err = languages.InitJavaDirs(prog.Path)
+	case languages.RUST:
+		err = languages.InitRustDirs(prog.Path)
 	default:
 		fmt.Printf("Nothing additional to create for %s project...\n", prog.Language)
 		err = nil
@@ -110,6 +112,11 @@ func (prog *Project) CreateProjectFile(filename string) error {
 	case "TODO":
 		return files.GenerateTODO(f + languages.MARKDOWN_EXT, prog.Name)
 	case "main":
+		// For Rust and C programs, put main in the src/ subdirectory
+		if strings.ToLower(prog.Language) == languages.C || strings.ToLower(prog.Language) == languages.RUST {
+			f = path.Join(prog.Path, "src", filename)
+		}
+
 		return files.GenerateMain(f, prog.Name, prog.Author, prog.Contributors, prog.Language)
 	default:
 		return errors.New("Unknown file " + filename + ", unable to create\n")

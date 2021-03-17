@@ -7,7 +7,7 @@
       - Changing repo location (Remote origin URL)
       - Changing the project name
       - Changing the local directory of the project
-   - Add support for initializing cargo with Rust projects
+   - ~~Add support for initializing cargo with Rust projects~~
    - Add support for getting author email addresses from the user
    - Add support for interactively getting README and TODO file contents from the user
    - Add support for getting git usernames from the user
