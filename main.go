@@ -5,6 +5,7 @@ import (
 	"github.com/gregfolker/auto-project-builder/pkg/project"
 	"github.com/gregfolker/auto-project-builder/pkg/git"
 	"github.com/gregfolker/auto-project-builder/internal/ui"
+	"github.com/gregfolker/auto-project-builder/internal/version"
 	"github.com/gregfolker/auto-project-builder/pkg/errorutil"
 )
 
@@ -13,7 +14,9 @@ const (
 )
 
 func main() {
-	fmt.Printf("%s\n\n", appName)
+	fmt.Printf("%s ", appName)
+	version.PrintVersion()
+	fmt.Printf("\n\n")
 
 	prog := project.NewProject()
 

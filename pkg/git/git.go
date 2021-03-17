@@ -30,3 +30,17 @@ func InitializeNewRepo(path string) error {
 
 	return nil
 }
+
+func DescribeTags(path string) (string, error) {
+	cmd := &exec.Cmd{}
+
+	cmd.Dir = path
+
+	out, err := exec.Command("sh", "-c", "git describe --tags").Output()
+
+	if err != nil {
+		return "", err
+	}
+
+	return string(out), nil
+}
