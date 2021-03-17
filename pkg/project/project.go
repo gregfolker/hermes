@@ -42,7 +42,7 @@ func (prog Project) PrintProjectInfo() {
 	}
 
 	fmt.Printf("Language: %s\n", prog.Language)
-	fmt.Printf("Path: %s\n", prog.Path)
+	fmt.Printf("Directory: %s\n", prog.Path)
 }
 
 func (prog *Project) CreateNewProjectDir() error {
