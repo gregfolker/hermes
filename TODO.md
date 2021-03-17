@@ -19,3 +19,4 @@
    - Add support for C++
    - ~~Add better error handling support using the github.com/pkg/errors module~~
    - ~~Print the version of the tool with the name~~
+   - Add support for overriding default behavior with environment variables
