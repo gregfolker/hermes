@@ -5,6 +5,7 @@ import (
 	"os/exec"
 	"fmt"
 	"path/filepath"
+	"github.com/pkg/errors"
 	"github.com/gregfolker/auto-project-builder/pkg/colors"
 )
 
@@ -103,14 +104,14 @@ func InitRustDirs(p string) error {
 	cmd = exec.Command("sh", "-c", "rustc --version")
 
 	if err := cmd.Run(); err != nil {
-		return err
+		return errors.Wrap(err, "Unable to find rustc on system")
 	}
 
 	cmd = exec.Command("sh", "-c", "cargo init")
 	cmd.Dir = p
 
 	if err := cmd.Run(); err != nil {
-		return err
+		return errors.Wrap(err, "cargo init failed in " + cmd.Dir)
 	}
 
 	fmt.Printf(colors.ColorText("Generated ", colors.ANSI_GREEN) + "project structure for %s\n", p)
@@ -127,7 +128,7 @@ func InitJavaDirs(p string) error {
 	appName := filepath.Base(p)
 
 	if err := cmd.Run(); err != nil {
-		return err
+		return errors.Wrap(err, "Unable to find mvn on system")
 	}
 
 	// Use Maven to generate the standard project structure for Java programs in the new project directory
@@ -135,7 +136,7 @@ func InitJavaDirs(p string) error {
 	cmd.Dir = p
 
 	if err := cmd.Run(); err != nil {
-		return err
+		return errors.Wrap(err, "mvn failed to initialize Java project")
 	}
 
 	fmt.Printf(colors.ColorText("Generated ", colors.ANSI_GREEN) + "project structure for %s\n", p)

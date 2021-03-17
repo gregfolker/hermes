@@ -5,7 +5,7 @@ import (
 	"path"
 	"strings"
 	"fmt"
-	"errors"
+	"github.com/pkg/errors"
 	"github.com/gregfolker/auto-project-builder/pkg/files"
 	"github.com/gregfolker/auto-project-builder/pkg/languages"
 	"github.com/gregfolker/auto-project-builder/pkg/colors"
@@ -50,7 +50,7 @@ func (prog *Project) CreateNewProjectDir() error {
 	userHome, err := os.UserHomeDir()
 
 	if err != nil {
-		return err
+		return errors.Wrap(err, "Unable to find user home directory")
 	}
 
 	// Avoid creating directories with spaces
@@ -65,7 +65,7 @@ func (prog *Project) CreateNewProjectDir() error {
 	fmt.Printf("Creating %s...\n", prog.Path)
 
 	if err := os.MkdirAll(prog.Path, os.FileMode(0755)); err != nil {
-		return err
+		return errors.Wrap(err, "Failed to create project directory " + prog.Path)
 	}
 
 	fmt.Printf(colors.ColorText("Generated: ", colors.ANSI_GREEN) + "%s\n", prog.Path)
