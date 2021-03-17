@@ -132,7 +132,7 @@ func InitJavaDirs(p string) error {
 	}
 
 	// Use Maven to generate the standard project structure for Java programs in the new project directory
-	cmd = exec.Command("sh", "-c", "mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=" + appName + " -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.4 -DinteractiveMode=false")
+	cmd = newMvnCmd(appName)
 	cmd.Dir = p
 
 	if err := cmd.Run(); err != nil {
@@ -142,4 +142,12 @@ func InitJavaDirs(p string) error {
 	fmt.Printf(colors.ColorText("Generated ", colors.ANSI_GREEN) + "project structure for %s\n", p)
 
 	return nil
+}
+
+func newMvnCmd(app string) *exec.Cmd {
+	base := "mvn archetype:generate"
+	opts := " -DgroupId=com.mycompany.app -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.4 -DinteractiveMode=false"
+	a := " -DartifactId=" + app
+
+	return exec.Command("sh", "-c", base + opts + a)
 }
