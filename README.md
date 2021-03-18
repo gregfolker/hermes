@@ -41,4 +41,4 @@ Run `pbld` to start the interactive prompt to enter the project name, author, an
 -----------------
 ### Reporting Issues
 
-Issues are tracked on [Github]{https://github.com/gregfolker/autoprojectbuilder/issues}
+Issues are tracked on [Github](https://github.com/gregfolker/autoprojectbuilder/issues)
