@@ -30,6 +30,16 @@ Run `make build` and `./install.sh`
 $ make build && ./install.sh
 `
 
+Currently, version info is being parsed from the git info of the install dir. The install script
+sets the environment variable `PBLD_INSTALL_DIR` when run but this will need to exist in future
+shell sessions to ensure the program is still able to run successfully
+
+Putting the following in `.bashrc` or similar is encouraged
+
+`
+export PBLD_INSTALL_DIR=/local/path/to/this/repo
+`
+
 -----------------
 ### Usage
 

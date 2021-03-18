@@ -1,5 +1,7 @@
 BIN="_out/pbld"
 
+export PBLD_INSTALL_DIR=$(pwd)
+
 if command -v go > /dev/null 2>&1 ; then
    echo "found $(go version)"
 else
