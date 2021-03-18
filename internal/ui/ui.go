@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"strconv"
 	"errors"
+	"os"
 	"github.com/c-bata/go-prompt"
 	"github.com/gregfolker/auto-project-builder/pkg/project"
 )
@@ -39,6 +40,9 @@ func GetUserInput(p *project.Project) error {
 	fmt.Printf("What language will this project be written in?\n")
 	p.Language = getProjectLanguage()
 
+	fmt.Printf("Where do you want the new project directory?\n (Provide no input for default location)\n")
+	p.Path = getProjectDirectory()
+
 	return validateUserInput(p)
 }
 
@@ -63,6 +67,12 @@ func validateUserInput(p *project.Project) error {
 		}
 	}
 
+	if p.Path != "" {
+		if _, err := os.Stat(p.Path); os.IsNotExist(err) {
+			return errors.New("Provided project path " + p.Path + " does not exist\n")
+		}
+	}
+
 	return nil
 }
 
@@ -79,6 +89,10 @@ func getProjectLanguage() string {
 }
 
 func getNumberOfContributors() string {
+	return prompt.Input(PromptPrefix, emptyAutoCompleter)
+}
+
+func getProjectDirectory() string {
 	return prompt.Input(PromptPrefix, emptyAutoCompleter)
 }
 

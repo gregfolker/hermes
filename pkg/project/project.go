@@ -47,6 +47,28 @@ func (prog Project) PrintProjectInfo() {
 
 func (prog *Project) CreateNewProjectDir() error {
 	var dir string
+
+	// If the user specified an alternate location, just use that directly with the project name
+	if prog.Path != "" {
+
+		// Avoid creating directories with spaces
+		if strings.Contains(prog.Name, " ") {
+			dir = strings.ReplaceAll(strings.ToLower(prog.Name), " ", "-")
+		} else {
+			dir = strings.ToLower(prog.Name)
+		}
+
+		prog.Path = path.Join(prog.Path, dir)
+
+		fmt.Printf("Creating %s...\n", prog.Path)
+
+		if err := os.MkdirAll(prog.Path, os.FileMode(0755)); err != nil {
+			return errors.Wrap(err, "Failed to create project directory " + prog.Path)
+		}
+
+		return nil
+	}
+
 	userHome, err := os.UserHomeDir()
 
 	if err != nil {
