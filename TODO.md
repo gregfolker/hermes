@@ -21,3 +21,4 @@
    - ~~Print the version of the tool with the name~~
    - Add support for overriding default behavior with environment variables
    - ~~Add support for allowing the user to specify the project location instead of using the default for the language~~
+   - Add support for adding a list of licenses to add to the project (MIT, GNU, Mozilla, etc.)
