@@ -20,9 +20,15 @@ func GetUserInput(p *project.Project) error {
 	fmt.Printf("Who is the primary author of this project?\n")
 	p.Author = getProjectContributor()
 
-	fmt.Printf("How many additional people will contribute this project?\n")
+	fmt.Printf("How many additional people will contribute this project?\n (Default: 0)\n")
 
-	contributorCount, err := strconv.Atoi(getNumberOfContributors())
+	contributors := getNumberOfContributors()
+
+	if contributors == "" {
+		contributors = "0"
+	}
+
+	contributorCount, err := strconv.Atoi(contributors)
 
 	if err != nil {
 		return err
