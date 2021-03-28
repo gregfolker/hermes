@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 BIN="_out/pbld"
 
 export PBLD_INSTALL_DIR=$(pwd)
