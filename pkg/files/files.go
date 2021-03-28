@@ -10,10 +10,24 @@ import (
 	"github.com/gregfolker/auto-project-builder/pkg/colors"
 )
 
-func GenerateReadMe(file string, title string, author string, contributors []string) error {
+func GenerateBlankReadMe(file string, title string) error {
 	fmt.Printf("Creating %s...\n", file)
 
-	contents := buildReadMeContents(title, author, contributors)
+	contents := []byte("## " + title + "\n")
+
+	if err := ioutil.WriteFile(file, contents, os.FileMode(0644)); err != nil {
+		return err
+	} else {
+		fmt.Printf(colors.ColorText("Generated: ", colors.ANSI_GREEN) + "%s\n", file)
+	}
+
+   return nil
+}
+
+func GenerateTemplateReadMe(file string, title string, author string, contributors []string) error {
+	fmt.Printf("Creating %s...\n", file)
+
+	contents := buildReadMeTemplate(title, author, contributors)
 
 	if err := ioutil.WriteFile(file, contents, os.FileMode(0644)); err != nil {
 		return err
@@ -58,7 +72,7 @@ func GenerateMain(file string, title string, author string, contributors []strin
 	return nil
 }
 
-func buildReadMeContents(title string, author string, contributors []string) []byte {
+func buildReadMeTemplate(title string, author string, contributors []string) []byte {
 	var titleLine string
 	var authorLine string
 	var contributorsLine string

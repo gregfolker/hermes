@@ -22,4 +22,4 @@
    - Add support for overriding default behavior with environment variables
    - ~~Add support for allowing the user to specify the project location instead of using the default for the language~~
    - Add support for adding a list of licenses to add to the project (MIT, GNU, Mozilla, etc.)
-   - Add an option to generate a blank README.md file instead of a templated one
+   - ~~Add an option to generate a blank README.md file instead of a templated one~~

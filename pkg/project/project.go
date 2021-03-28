@@ -17,6 +17,7 @@ type Project struct {
 	Language string
 	Path string
 	Contributors []string
+   ReadmeTemplate bool
 }
 
 func NewProject() *Project {
@@ -130,7 +131,11 @@ func (prog *Project) CreateProjectFile(filename string) error {
 
 	switch filename {
 	case "README":
-		return files.GenerateReadMe(f + languages.MARKDOWN_EXT, prog.Name, prog.Author, prog.Contributors)
+      if prog.ReadmeTemplate {
+		   return files.GenerateTemplateReadMe(f + languages.MARKDOWN_EXT, prog.Name, prog.Author, prog.Contributors)
+      } else {
+         return files.GenerateBlankReadMe(f + languages.MARKDOWN_EXT, prog.Name)
+      }
 	case "TODO":
 		return files.GenerateTODO(f + languages.MARKDOWN_EXT, prog.Name)
 	case "main":
