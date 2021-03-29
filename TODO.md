@@ -10,6 +10,8 @@
       - Changing repo location (Remote origin URL)
       - Changing the project name
       - Changing the local directory of the project
+      - Adding new items to the projects TODO.md
+      - Crossing off completed items in the projects TODO.md
    - ~~Add support for initializing cargo with Rust projects~~
    - Add support for getting author email addresses from the user
    - Add support for interactively getting README and TODO file contents from the user
