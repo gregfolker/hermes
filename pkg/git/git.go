@@ -8,7 +8,7 @@ import (
 	"github.com/gregfolker/auto-project-builder/pkg/colors"
 )
 
-func InitializeNewRepo(path string) error {
+func Init(path string) error {
 	fmt.Printf("Creating git repository...\n")
 
 	if path == "" {

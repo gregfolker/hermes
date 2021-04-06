@@ -52,7 +52,7 @@ func main() {
 		return
 	}
 
-	if err := git.InitializeNewRepo(prog.Path); err != nil {
+	if err := git.Init(prog.Path); err != nil {
 		errorutil.PrintError(err)
 		return
 	}
