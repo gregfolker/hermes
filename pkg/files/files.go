@@ -52,7 +52,7 @@ func GenerateTODO(file string, title string) error {
 	return nil
 }
 
-func GenerateMain(file string, title string, author string, contributors []string, language string) error {
+func GenerateMain(file string, title string, author string, contributors []string, language string, isKmod bool) error {
 	if strings.ToLower(language) == languages.JAVA {
 		// The files for Java will be created via Maven when initializing the project directory structure, so just quietly return here
 		// instead of using the existing template for main.java
@@ -61,7 +61,7 @@ func GenerateMain(file string, title string, author string, contributors []strin
 
 	fmt.Printf("Creating %s...\n", file + languages.LanguageToExtension[strings.ToLower(language)])
 
-	contents := buildMainContents(title, author, contributors, language)
+	contents := buildMainContents(title, author, contributors, language, isKmod)
 
 	if err := ioutil.WriteFile(file + languages.LanguageToExtension[strings.ToLower(language)], contents, os.FileMode(0644)); err != nil {
 		return err
@@ -97,7 +97,7 @@ func buildReadMeTemplate(title string, author string, contributors []string) []b
 	return contents
 }
 
-func buildMainContents(title string, author string, contributors []string, language string) []byte {
+func buildMainContents(title string, author string, contributors []string, language string, isKmod bool) []byte {
 	var titleLine string
 	var authorLine string
 	var contributorsLine string
@@ -119,7 +119,7 @@ func buildMainContents(title string, author string, contributors []string, langu
 		contributorsLine = contributorsLine + "\n"
 	}
 
-	t, err := templates.GetMainTemplate(language)
+	t, err := templates.GetMainTemplate(language, isKmod)
 
 	if err != nil {
 		return contents

@@ -87,6 +87,27 @@ int main(int argc, char *argv[]) {
 }
 `
 
+C_KMOD_TEMPLATE =
+`
+#include <linux/init.h>
+#include <linux/module.h>
+
+MODULE_LICENSE("Dual BSD/GPL");
+MODULE_AUTHOR("")
+
+int hello_init(void) {
+   printk(KERN_INFO "Hello, World!\n");
+   return 0;
+}
+
+void hello_exit(void) {
+   printk(KERN_INFO "Goodbye, World!\n");
+}
+
+module_init(hello_init);
+module_exit(hello_exit);
+`
+
 JAVA_MAIN_TEMPLATE =
 `
 class MainClass {
@@ -105,7 +126,7 @@ fn main() {
 
 )
 
-func GetMainTemplate(language string) (string, error) {
+func GetMainTemplate(language string, isKmod bool) (string, error) {
 	var err error
 	t := ""
 
@@ -114,7 +135,11 @@ func GetMainTemplate(language string) (string, error) {
 		t = GO_MAIN_TEMPLATE
 		err = nil
 	case languages.C:
-		t = C_MAIN_TEMPLATE
+      if isKmod {
+         t = C_KMOD_TEMPLATE
+      } else {
+		   t = C_MAIN_TEMPLATE
+      }
 		err = nil
 	case languages.PYTHON:
 		t = PY_MAIN_TEMPLATE

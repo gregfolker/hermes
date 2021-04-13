@@ -8,6 +8,7 @@ import (
    "strings"
 	"github.com/c-bata/go-prompt"
 	"github.com/gregfolker/auto-project-builder/pkg/project"
+	"github.com/gregfolker/auto-project-builder/pkg/languages"
 )
 
 const (
@@ -48,6 +49,21 @@ func GetUserInput(p *project.Project) error {
 
 	fmt.Printf("What language will this project be written in?\n")
 	p.Language = getProjectLanguage()
+
+   if strings.ToLower(p.Language) == languages.C {
+      // For C programs, ask if this will be a kernel module as
+      // the template for kmods is different from generic C programs
+      fmt.Printf("Is this project going to be a kernel module?\n")
+      answer = getYesNoAnswer()
+
+      if strings.ToLower(answer) == "yes" {
+         p.IsKmod = true;
+      } else {
+         p.IsKmod = false;
+      }
+   } else {
+      p.IsKmod = false;
+   }
 
 	fmt.Printf("Where do you want the new project directory?\n (Provide no input for default location)\n")
 	p.Path = getProjectDirectory()

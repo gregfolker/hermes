@@ -18,6 +18,7 @@ type Project struct {
 	Path string
 	Contributors []string
    ReadmeTemplate bool
+   IsKmod         bool        // Is this project for a kernel module? Only applies to C programs
 }
 
 func NewProject() *Project {
@@ -144,7 +145,7 @@ func (prog *Project) CreateProjectFile(filename string) error {
 			f = path.Join(prog.Path, "src", filename)
 		}
 
-		return files.GenerateMain(f, prog.Name, prog.Author, prog.Contributors, prog.Language)
+		return files.GenerateMain(f, prog.Name, prog.Author, prog.Contributors, prog.Language, prog.IsKmod)
 	default:
 		return errors.New("Unknown file " + filename + ", unable to create\n")
 	}
