@@ -10,6 +10,8 @@
       - Changing repo location (Remote origin URL)
       - Changing the project name
       - Changing the local directory of the project
+      - Adding new items to the projects TODO.md
+      - Crossing off completed items in the projects TODO.md
    - ~~Add support for initializing cargo with Rust projects~~
    - Add support for getting author email addresses from the user
    - Add support for interactively getting README and TODO file contents from the user
@@ -22,3 +24,5 @@
    - Add support for overriding default behavior with environment variables
    - ~~Add support for allowing the user to specify the project location instead of using the default for the language~~
    - Add support for adding a list of licenses to add to the project (MIT, GNU, Mozilla, etc.)
+   - ~~Add an option to generate a blank README.md file instead of a templated one~~
+   - Create unit tests

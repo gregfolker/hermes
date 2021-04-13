@@ -5,6 +5,7 @@ import (
 	"strconv"
 	"errors"
 	"os"
+   "strings"
 	"github.com/c-bata/go-prompt"
 	"github.com/gregfolker/auto-project-builder/pkg/project"
 )
@@ -14,6 +15,8 @@ const (
 )
 
 func GetUserInput(p *project.Project) error {
+   var answer string
+
 	fmt.Printf("What is the name of this project?\n")
 	p.Name = getProjectName()
 
@@ -48,6 +51,15 @@ func GetUserInput(p *project.Project) error {
 
 	fmt.Printf("Where do you want the new project directory?\n (Provide no input for default location)\n")
 	p.Path = getProjectDirectory()
+
+   fmt.Printf("Generate a template README.md?\n (Default: No)\n")
+   answer = getYesNoAnswer()
+
+   if strings.ToLower(answer) == "yes" {
+      p.ReadmeTemplate = true
+   } else {
+      p.ReadmeTemplate = false
+   }
 
 	return validateUserInput(p)
 }
@@ -102,6 +114,10 @@ func getProjectDirectory() string {
 	return prompt.Input(PromptPrefix, emptyAutoCompleter)
 }
 
+func getYesNoAnswer() string {
+   return prompt.Input(PromptPrefix, yesNoAutoCompleter)
+}
+
 func nameAutoCompleter(d prompt.Document) []prompt.Suggest {
 	s := []prompt.Suggest {
 		{Text: "Greg Folker"},
@@ -128,6 +144,15 @@ func emptyAutoCompleter(d prompt.Document) []prompt.Suggest {
 	s := []prompt.Suggest {
 		{Text: ""},
 	}
+
+	return prompt.FilterHasPrefix(s, d.GetWordBeforeCursor(), true)
+}
+
+func yesNoAutoCompleter(d prompt.Document) []prompt.Suggest {
+   s := []prompt.Suggest {
+      {Text: "No"},
+      {Text: "Yes"},
+   }
 
 	return prompt.FilterHasPrefix(s, d.GetWordBeforeCursor(), true)
 }
