@@ -101,17 +101,7 @@ func buildMakefileContents(title string, author string, contributors []string, l
 
 	titleLine = c + " Project: " + title + "\n"
 	authorLine = c + " Author: " + author + "\n"
-
-	if len(contributors) > 0 {
-		contributorsLine = c + " Contributors:"
-		for i := 0; i < len(contributors); i++ {
-			contributorsLine = contributorsLine + " " + contributors[i]
-			if i + 1 != len(contributors) {
-				contributorsLine = contributorsLine + ","
-			}
-		}
-		contributorsLine = contributorsLine + "\n"
-   }
+	contributorsLine = c + buildContributorsLine(contributors)
 
 	t := templates.MAKEFILE_TEMPLATE
 
@@ -128,17 +118,7 @@ func buildReadMeTemplate(title string, author string, contributors []string) []b
 
 	titleLine = "## Project: " + title + "\n"
 	authorLine = "## Author: " + author + "\n"
-
-	if len(contributors) > 0 {
-		contributorsLine = "### Contributors:"
-		for i := 0; i < len(contributors); i++ {
-			contributorsLine = contributorsLine + " " + contributors[i]
-			if i + 1 != len(contributors) {
-				contributorsLine = contributorsLine + ","
-			}
-		}
-		contributorsLine = contributorsLine + "\n"
-	}
+	contributorsLine = "##" + buildContributorsLine(contributors)
 
 	contents = []byte(titleLine + authorLine + contributorsLine + templates.README_TEMPLATE)
 
@@ -155,17 +135,7 @@ func buildMainContents(title string, author string, contributors []string, langu
 
 	titleLine = c + " Project: " + title + "\n"
 	authorLine = c + " Author: " + author + "\n"
-
-	if len(contributors) > 0 {
-		contributorsLine = c + " Contributors:"
-		for i := 0; i < len(contributors); i++ {
-			contributorsLine = contributorsLine + " " + contributors[i]
-			if i + 1 != len(contributors) {
-				contributorsLine = contributorsLine + ","
-			}
-		}
-		contributorsLine = contributorsLine + "\n"
-	}
+	contributorsLine = c + buildContributorsLine(contributors)
 
 	t, err := templates.GetMainTemplate(language, isKmod)
 
@@ -176,4 +146,20 @@ func buildMainContents(title string, author string, contributors []string, langu
 	contents = []byte(titleLine + authorLine + contributorsLine + t)
 
 	return contents
+}
+
+func buildContributorsLine(contributors []string) string {
+   if len(contributors) == 0 {
+      return ""
+   }
+
+   c := " Contributors:"
+	for i := 0; i < len(contributors); i++ {
+      c = c + " " + contributors[i]
+		if i + 1 != len(contributors) {
+			c = c + ","
+		}
+   }
+
+   return c
 }
