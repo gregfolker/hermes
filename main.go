@@ -52,6 +52,11 @@ func main() {
 		return
 	}
 
+	if err := prog.CreateProjectFile("Makefile"); err != nil {
+		errorutil.PrintError(err)
+		return
+	}
+
 	if err := git.Init(prog.Path); err != nil {
 		errorutil.PrintError(err)
 		return

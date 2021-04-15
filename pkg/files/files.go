@@ -72,6 +72,54 @@ func GenerateMain(file string, title string, author string, contributors []strin
 	return nil
 }
 
+func GenerateMakefile(file string, title string, author string, contributors []string, language string) error {
+   // Only C programs should get a makefile
+   if strings.ToLower(language) != strings.ToLower(languages.C) {
+      return nil
+   }
+
+	fmt.Printf("Creating %s...\n", file)
+
+   contents := buildMakefileContents(title, author, contributors, language)
+
+	if err := ioutil.WriteFile(file, contents, os.FileMode(0644)); err != nil {
+		return err
+	} else {
+		fmt.Printf(colors.ColorText("Generated: ", colors.ANSI_GREEN) + "%s\n", file)
+	}
+
+   return nil
+}
+
+func buildMakefileContents(title string, author string, contributors []string, language string) []byte {
+	var titleLine string
+	var authorLine string
+	var contributorsLine string
+	var contents []byte
+
+	c := languages.MAKE_COMMENT_LEADER
+
+	titleLine = c + " Project: " + title + "\n"
+	authorLine = c + " Author: " + author + "\n"
+
+	if len(contributors) > 0 {
+		contributorsLine = c + " Contributors:"
+		for i := 0; i < len(contributors); i++ {
+			contributorsLine = contributorsLine + " " + contributors[i]
+			if i + 1 != len(contributors) {
+				contributorsLine = contributorsLine + ","
+			}
+		}
+		contributorsLine = contributorsLine + "\n"
+   }
+
+	t := templates.MAKEFILE_TEMPLATE
+
+	contents = []byte(titleLine + authorLine + contributorsLine + t)
+
+   return contents
+}
+
 func buildReadMeTemplate(title string, author string, contributors []string) []byte {
 	var titleLine string
 	var authorLine string

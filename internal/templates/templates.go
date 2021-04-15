@@ -124,6 +124,15 @@ fn main() {
 }
 `
 
+MAKEFILE_TEMPLATE =
+`
+default:
+    $(MAKE) -C
+
+clean:
+    rm -rf *.o *~ core .depend .*.cmd *.ko *.mod.c .tmp_versions _out/*
+`
+
 )
 
 func GetMainTemplate(language string, isKmod bool) (string, error) {

@@ -146,6 +146,14 @@ func (prog *Project) CreateProjectFile(filename string) error {
 		}
 
 		return files.GenerateMain(f, prog.Name, prog.Author, prog.Contributors, prog.Language, prog.IsKmod)
+   case "Makefile":
+      // Only create a makefile for C programs
+      if strings.ToLower(prog.Language) != languages.C {
+         fmt.Printf("INFO: Makefile not required for %s program. Ignoring...\n", prog.Language)
+         return nil
+      }
+
+      return files.GenerateMakefile(f, prog.Name, prog.Author, prog.Contributors, prog.Language)
 	default:
 		return errors.New("Unknown file " + filename + ", unable to create\n")
 	}

@@ -63,6 +63,7 @@ const (
 	RUST_COMMENT_LEADER = "//"
 	BASH_COMMENT_LEADER = "#"
 	PERL_COMMENT_LEADER = "#"
+	MAKE_COMMENT_LEADER = "#"
 )
 
 func InitGolangDirs(p string) error {
