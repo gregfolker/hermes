@@ -24,10 +24,10 @@ Clone this repository
 $ git clone https://github.com/gregfolker/autoprojectbuilder.git
 `
 
-Run `make build` and `./install.sh`
+Run `make` and `./install.sh`
 
 `
-$ make build && ./install.sh
+$ make && ./install.sh
 `
 
 Currently, version info is being parsed from the git info of the install dir. The install script
