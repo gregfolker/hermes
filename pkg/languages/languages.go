@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"path/filepath"
 	"github.com/pkg/errors"
-	"github.com/gregfolker/auto-project-builder/pkg/colors"
+	"github.com/gregfolker/hermes/pkg/colors"
 )
 
 var LanguageToExtension = map[string]string {

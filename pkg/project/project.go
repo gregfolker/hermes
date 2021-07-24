@@ -6,9 +6,9 @@ import (
 	"strings"
 	"fmt"
 	"github.com/pkg/errors"
-	"github.com/gregfolker/auto-project-builder/pkg/files"
-	"github.com/gregfolker/auto-project-builder/pkg/languages"
-	"github.com/gregfolker/auto-project-builder/pkg/colors"
+	"github.com/gregfolker/hermes/pkg/files"
+	"github.com/gregfolker/hermes/pkg/languages"
+	"github.com/gregfolker/hermes/pkg/colors"
 )
 
 type Project struct {

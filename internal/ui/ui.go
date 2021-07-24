@@ -7,8 +7,8 @@ import (
 	"os"
    "strings"
 	"github.com/c-bata/go-prompt"
-	"github.com/gregfolker/auto-project-builder/pkg/project"
-	"github.com/gregfolker/auto-project-builder/pkg/languages"
+	"github.com/gregfolker/hermes/pkg/project"
+	"github.com/gregfolker/hermes/pkg/languages"
 )
 
 const (

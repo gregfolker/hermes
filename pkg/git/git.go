@@ -5,7 +5,7 @@ import (
 	"errors"
 	"os"
 	"os/exec"
-	"github.com/gregfolker/auto-project-builder/pkg/colors"
+	"github.com/gregfolker/hermes/pkg/colors"
 )
 
 func Init(path string) error {

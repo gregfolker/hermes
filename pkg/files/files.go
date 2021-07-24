@@ -5,9 +5,9 @@ import (
 	"os"
 	"io/ioutil"
 	"strings"
-	"github.com/gregfolker/auto-project-builder/internal/templates"
-	"github.com/gregfolker/auto-project-builder/pkg/languages"
-	"github.com/gregfolker/auto-project-builder/pkg/colors"
+	"github.com/gregfolker/hermes/internal/templates"
+	"github.com/gregfolker/hermes/pkg/languages"
+	"github.com/gregfolker/hermes/pkg/colors"
 )
 
 func GenerateBlankReadMe(file string, title string) error {

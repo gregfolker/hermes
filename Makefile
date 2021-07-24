@@ -1,5 +1,5 @@
 default:
-	go build -o _out/pbld main.go
+	go build -o _out/hermes main.go
 
 run:
 	go run main.go

@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"errors"
 	"strings"
-	"github.com/gregfolker/auto-project-builder/pkg/colors"
-	"github.com/gregfolker/auto-project-builder/pkg/languages"
+	"github.com/gregfolker/hermes/pkg/colors"
+	"github.com/gregfolker/hermes/pkg/languages"
 )
 
 const (

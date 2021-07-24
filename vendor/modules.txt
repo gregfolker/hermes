@@ -1,4 +1,5 @@
-# github.com/c-bata/go-prompt v0.2.5
+# github.com/c-bata/go-prompt v0.2.6
+## explicit
 github.com/c-bata/go-prompt
 github.com/c-bata/go-prompt/internal/bisect
 github.com/c-bata/go-prompt/internal/debug
@@ -12,7 +13,10 @@ github.com/mattn/go-isatty
 github.com/mattn/go-runewidth
 # github.com/mattn/go-tty v0.0.3
 github.com/mattn/go-tty
-# github.com/pkg/term v1.1.0
+# github.com/pkg/errors v0.9.1
+## explicit
+github.com/pkg/errors
+# github.com/pkg/term v1.2.0-beta.2
 github.com/pkg/term/termios
 # golang.org/x/sys v0.0.0-20200918174421-af09f7315aff
 golang.org/x/sys/internal/unsafeheader

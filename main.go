@@ -2,15 +2,15 @@ package main
 
 import (
 	"fmt"
-	"github.com/gregfolker/auto-project-builder/pkg/project"
-	"github.com/gregfolker/auto-project-builder/pkg/git"
-	"github.com/gregfolker/auto-project-builder/internal/ui"
-	"github.com/gregfolker/auto-project-builder/internal/version"
-	"github.com/gregfolker/auto-project-builder/pkg/errorutil"
+	"github.com/gregfolker/hermes/pkg/project"
+	"github.com/gregfolker/hermes/pkg/git"
+	"github.com/gregfolker/hermes/internal/ui"
+	"github.com/gregfolker/hermes/internal/version"
+	"github.com/gregfolker/hermes/pkg/errorutil"
 )
 
 const (
-	appName = "Auto Project Builder"
+	appName = "Hermes"
 )
 
 func main() {

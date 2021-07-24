@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 	"github.com/pkg/errors"
-	"github.com/gregfolker/auto-project-builder/pkg/git"
+	"github.com/gregfolker/hermes/pkg/git"
 )
 
 func PrintVersion() {
