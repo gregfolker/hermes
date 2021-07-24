@@ -11,6 +11,23 @@ import (
 	"github.com/gregfolker/hermes/pkg/colors"
 )
 
+type ProjectGenerator interface {}
+
+func NewProjectGenerator(language string) ProjectGenerator {
+   switch strings.ToLower(language) {
+   case "c":
+      return &languages.CProject{}
+   case "java":
+      return &languages.JavaProject{}
+   case "rust":
+      return &languages.RustProject{}
+   case "go":
+      return &languages.GoProject{}
+   default:
+      return nil
+   }
+}
+
 type Project struct {
 	Name string
 	Author string
